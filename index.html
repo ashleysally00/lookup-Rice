@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Phone Number Lookup</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Phone Number Lookup</h1>
+    <p>Please enter the name of the person you want to lookup:</p>
+    <input id="nameInput" type="text" />
+    <button onclick="lookupByName()">Lookup</button>
+    <p id="result"></p>
+
+    <h1>Reverse Phone Number Lookup</h1>
+    <p>Please enter the number of the person you want to lookup:</p>
+    <input id="numberInput" type="text" />
+    <button onclick="lookupByNumber()">Lookup</button>
+    <p id="result2"></p>
+
+    <script>
+      let phoneBook = [
+        { name: "Alice", phoneNumber: "123-456-7890" },
+        { name: "Bob", phoneNumber: "234-567-8901" },
+        { name: "Charlie", phoneNumber: "345-678-9012" },
+        { name: "David", phoneNumber: "456-789-0123" },
+        { name: "Eve", phoneNumber: "567-890-1234" },
+        { name: "Frank", phoneNumber: "678-901-2345" },
+        { name: "Grace", phoneNumber: "789-012-3456" },
+        { name: "Helen", phoneNumber: "890-123-4567" },
+        { name: "Igor", phoneNumber: "901-234-5678" },
+        { name: "John", phoneNumber: "012-345-6789" },
+      ];
+
+      function lookupByName() {
+        //type in name to find person's phone number
+        let name = document.getElementById("nameInput").value;
+        let person = phoneBook.find((p) => p.name === name);
+        let resultElement = document.getElementById("result");
+
+        //if you type in the person's name, it either gives you their phone number or says
+        //no number was found
+        if (person) {
+          resultElement.textContent = `${person.name}'s phone number is: ${person.phoneNumber}`;
+        } else {
+          resultElement.textContent = `No phone number found for ${name}.`;
+        }
+      }
+
+      function lookupByNumber() {
+        //type in phone number to find friend's name
+        let phoneNumber = document.getElementById("numberInput").value;
+        let friend = phoneBook.find((f) => f.phoneNumber === phoneNumber);
+        let result2Element = document.getElementById("result2");
+
+        //if you type in the friends's phone number, it either gives you the friend's name or says
+        //no name was found for it
+        if (friend) {
+          result2Element.textContent = `${friend.phoneNumber}'s name is: ${friend.name}`;
+        } else {
+          result2Element.textContent = `No name found for ${phoneNumber}.`;
+        }
+      }
+    </script>
+  </body>
+</html>
